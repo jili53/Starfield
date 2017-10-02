@@ -1,7 +1,11 @@
-//your code here
+Particle [] particles; //your code here
+
 void setup()
 {
-	//your code here
+  particles = new Particle[400];
+  for(int i =0; i <particles.length ; i++)
+  particles[i] = new NormalParticle();
+	size(500,500);//your code here
 }
 void draw()
 {
@@ -9,7 +13,8 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	double dX, dY, dTheta, dSpeed;//your code here
+
 }
 interface Particle
 {
@@ -23,4 +28,8 @@ class JumboParticle //uses inheritance
 {
 	//your code here
 }
-
+interface Particle
+{
+  public void show();
+  public void move();
+}
