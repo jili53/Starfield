@@ -5,7 +5,14 @@ void setup()
 {
   particles = new Particles[5000];
   for(int i =0; i <particles.length ; i++)
+  {
     particles[i] = new NormalParticle();
+    particles[1] = new OddballParticle();
+    particles[2] = new JumboParticle();
+    particles[3] = new JumboParticle();
+    particles[4] = new JumboParticle();
+    
+  }
 	size(500,500);//your code here
 }
 void draw()
@@ -37,7 +44,7 @@ class NormalParticle implements Particles
   {
     dX = dX + dSpeed*Math.cos(dTheta);
     dY = dY + dSpeed*Math.sin(dTheta);
-    if(dX >500 || dX <-500 || dY <-500)
+    if(dX >500 || dX <0 || dY <0)
     {
       dX = 250;
       dY = 250;
@@ -54,21 +61,44 @@ class OddballParticle implements Particles//uses an interface
   OddballParticle()
   {
     myX = 250;
-    myY = 300;
+    myY = 390;
   }
   public void show()
   {
     stroke(0);
-    line(myX,myY, myX, myY+60);
-    ellipse(myX,myY,60,60);
+    fill(255);
+    line(myX,myY, myX, myY+80);
+    line(myX,myY+40,myX-30,myY+15);
+    line(myX,myY+40,myX+30,myY+15);
+    line(myX,myY+80,myX-20,myY+105);
+    line(myX,myY+80,myX+20,myY+105);
+    ellipse(myX,myY,50,50);
+    ellipse(myX-10,myY,15,15);
+    ellipse(myX+10,myY,15,15);
+    ellipse(myX-10,myY,1,1);
+    ellipse(myX+10,myY,1,1);
+    fill(240,99,99);
+    ellipse(myX,myY+15,17,11);
+    stroke(255,0,0);
+    fill(255,0,0);
   }
   public void move()
   {
+    myX = myX + (int)(Math.random()*15)-7;
+    myY = myY + (int)(Math.random()*3)-1;
   }
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle //uses inheritance
 {
-	//your code here
+	public void show()//your code here
+  {
+    fill(255,171,3);
+    stroke(255,171,3);
+    ellipse((float)dX,(float)dY,20,20);
+    stroke(255,0,0);
+    fill(255,0,0);
+  }
+
 }
 interface Particles
 {
